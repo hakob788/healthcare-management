@@ -50,7 +50,7 @@ public class AppointmentController {
 
     @PostMapping("/create")
     public String createApp(@ModelAttribute Appointment appointment,
-                            @RequestParam("date.time") @DateTimeFormat(pattern = "yyyy-MM-dd 'T' HH:mm") Date date) {
+                            @RequestParam("dateTime.time") @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm") Date date) {
         appointment.setDateTime(date);
         appointmentRepository.save(appointment);
         return "redirect:/appointments";

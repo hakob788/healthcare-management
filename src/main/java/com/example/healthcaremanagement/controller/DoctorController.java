@@ -42,7 +42,7 @@ public class DoctorController {
 
     @PostMapping("/create")
     public String createDoctor(@ModelAttribute Doctor doctor,
-                               @RequestParam("image") MultipartFile multipartFile) throws IOException {
+                               @RequestParam("profilePic") MultipartFile multipartFile) throws IOException {
         if (multipartFile != null && !multipartFile.isEmpty()) {
             String fileName = System.nanoTime() + "_" + multipartFile.getOriginalFilename();
             File file = new File(imagePath + fileName);
