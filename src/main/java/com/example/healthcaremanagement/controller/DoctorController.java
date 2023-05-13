@@ -2,7 +2,6 @@ package com.example.healthcaremanagement.controller;
 
 import com.example.healthcaremanagement.entity.Doctor;
 import com.example.healthcaremanagement.repository.DoctorRepository;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -23,7 +22,7 @@ public class DoctorController {
     private String imagePath;
 
     @GetMapping
-    public String doctors(@NotNull ModelMap modelMap) {
+    public String doctors(ModelMap modelMap) {
         List<Doctor> all = doctorRepository.findAll();
         modelMap.addAttribute("doctors", all);
         return "doctors";
