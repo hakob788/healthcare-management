@@ -5,7 +5,8 @@ import java.util.Date;
 
 public class DateUtil {
     private static final String dateFormat = "dd/MM/yyyy";
-    public static String formatDate(Date date){
+
+    public static String formatDate(Date date) {
         if (date == null) {
             return "";
         }

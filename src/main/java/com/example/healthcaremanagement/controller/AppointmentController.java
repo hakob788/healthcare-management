@@ -40,7 +40,7 @@ public class AppointmentController {
     }
 
     @GetMapping("/create")
-    public String createApp(ModelMap modelMap) {
+    public String createAppointment(ModelMap modelMap) {
         List<Patient> allPatients = patientRepository.findAll();
         List<Doctor> allDoctors = doctorRepository.findAll();
         modelMap.addAttribute("doctors", allDoctors);
@@ -49,8 +49,8 @@ public class AppointmentController {
     }
 
     @PostMapping("/create")
-    public String createApp(@ModelAttribute Appointment appointment,
-                            @RequestParam("dateTime") @DateTimeFormat(pattern = "yyyy-MM-dd 'T' HH:mm") Date date) {
+    public String createAppointment(@ModelAttribute Appointment appointment,
+                                    @RequestParam("dateTime") @DateTimeFormat(pattern = "yyyy-MM-dd 'T' HH:mm") Date date) {
         appointment.setDateTime(date);
         appointmentRepository.save(appointment);
         return "redirect:/appointments";
