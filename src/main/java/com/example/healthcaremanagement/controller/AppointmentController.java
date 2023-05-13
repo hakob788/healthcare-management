@@ -45,12 +45,12 @@ public class AppointmentController {
         List<Doctor> allDoctors = doctorRepository.findAll();
         modelMap.addAttribute("doctors", allDoctors);
         modelMap.addAttribute("patients", allPatients);
-        return "createAppointment";
+        return "addAppointment";
     }
 
     @PostMapping("/create")
     public String createApp(@ModelAttribute Appointment appointment,
-                            @RequestParam("dateTime.time") @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm") Date date) {
+                            @RequestParam("dateTime") @DateTimeFormat(pattern = "yyyy-MM-dd 'T' HH:mm") Date date) {
         appointment.setDateTime(date);
         appointmentRepository.save(appointment);
         return "redirect:/appointments";
