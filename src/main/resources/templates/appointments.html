@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Appointments</title>
+</head>
+<body>
+<h2>Appointments</h2><br>
+<a href="/">Back</a>
+<table border="5px">
+    <tr>
+        <th>Id</th>
+        <th>Visit Time</th>
+        <th>Patient name</th>
+        <th>Doctor Name</th>
+        <th>Action</th>
+    </tr>
+    <tr th:each="appoint: ${appointments}">
+        <td th:text="${appoint.id}"></td>
+        <td th:text="${appoint.dateTime}"></td>
+        <td th:text="${appoint.patient.name}"></td>
+        <td th:text="${appoint.doctor.name}"></td>
+        <td><a th:href="@{/appointments/remove(id = ${appoint.id})}">Remove</a></td>
+    </tr>
+</table>
+<p><a th:href="@{/appointments/create}">Create table</a></p>
+</body>
+</html>

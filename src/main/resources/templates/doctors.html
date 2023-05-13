@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Doctors</title>
+</head>
+<body>
+<a href="/">Back</a>
+<h1>Doctors</h1>
+<table border="5px">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Email</th>
+        <th>Specialty</th>
+        <th>Phone Number</th>
+        <th>Picture</th>
+        <th>Action</th>
+    </tr>
+    <tr th:each="doctor: ${doctors}">
+        <td th:text="${doctor.id}"></td>
+        <td th:text="${doctor.name}"></td>
+        <td th:text="${doctor.surname}"></td>
+        <td th:text="${doctor.email}"></td>
+        <td th:text="${doctor.specialty}"></td>
+        <td th:text="${doctor.phoneNumber}"></td>
+        <td>
+            <img th:if="${doctor.profilePic != null}" th:src="@{/getImage(imageName=${doctor.profilePic})}"
+                 width="100"/>
+            <img th:if="${doctor.profilePic == null or doctor.profilePic.equalsIgnoreCase('null')}" th:src="@{/img.png}"
+                 width="100">
+        </td>
+        <td><a th:href="@{/doctors/remove(id=${doctor.id})}">Remove</a></td>
+    </tr>
+</table>
+<p><a th:href="@{/doctors/create}">Create table</a></p>
+</body>
+</html>

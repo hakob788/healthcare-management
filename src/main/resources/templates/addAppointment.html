@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Appointment</title>
+</head>
+<body>
+<h2> Add Appointment </h2>
+<form action="/appointments/add" method="post">
+    Select visit Time: <label>
+    <input type="datetime-local" name="date.time">
+</label> <br>
+    Select Patient:
+    <label>
+        <select name="patient.id">
+            <option th:each="patient: ${patients}"
+                    th:text="${patient.name}" th:value="${patient.id}"></option>
+        </select>
+    </label> <br>
+    Select Doctor:
+    <label>
+        <select name="doctor.id">
+            <option th:each="doctor: ${doctors}"
+                    th:text="${doctor.name}" th:value="${doctor.id}"></option>
+        </select>
+    </label> <br>
+    <input type="submit" value="add">
+</form>
+</body>
+</html>
