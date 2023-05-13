@@ -6,7 +6,7 @@
 </head>
 <body>
 <h2> Add Appointment </h2>
-<form action="/appointments/add" method="post">
+<form action="/appointments/create" method="post">
     Select visit Time: <label>
     <input type="datetime-local" name="date.time">
 </label> <br>
@@ -24,7 +24,7 @@
                     th:text="${doctor.name}" th:value="${doctor.id}"></option>
         </select>
     </label> <br>
-    <input type="submit" value="add">
+    <input type="submit" value="create">
 </form>
 </body>
 </html>

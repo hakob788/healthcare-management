@@ -6,6 +6,7 @@ import com.example.healthcaremanagement.entity.Patient;
 import com.example.healthcaremanagement.repository.AppointmentRepository;
 import com.example.healthcaremanagement.repository.DoctorRepository;
 import com.example.healthcaremanagement.repository.PatientRepository;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,7 @@ public class AppointmentController {
     private PatientRepository patientRepository;
 
     @GetMapping
-    public String appointments(ModelMap modelMap) {
+    public String appointments(@NotNull ModelMap modelMap) {
         List<Appointment> all = appointmentRepository.findAll();
         modelMap.addAttribute("appointments", all);
         return "appointments";
