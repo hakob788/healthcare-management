@@ -19,8 +19,8 @@
         <td th:text="${patient.id}"></td>
         <td th:text="${patient.name}"></td>
         <td th:text="${patient.surname}"></td>
-        <td th:text="${T(com.example.healthcaremanagement.util.DateUtil).formatDate(patient.dateOfBirthday)}"></td>
-        <td><a th:href="@{/patients/remove(id=${patient.id})}">Remove</a></td>
+        <td th:text="${patient.dateOfBirthday}"></td>
+        <td><a th:href="@{/patients/remove(id = ${patient.id})}">Remove</a></td>
     </tr>
 </table>
 <p><a th:href="@{/patients/create}">Create table</a></p>
