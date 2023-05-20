@@ -8,7 +8,6 @@ import com.example.healthcaremanagement.repository.DoctorRepository;
 import com.example.healthcaremanagement.repository.PatientRepository;
 import com.example.healthcaremanagement.security.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -46,15 +45,15 @@ public class AppointmentController {
         List<Doctor> allDoctors = doctorRepository.findAll();
         modelMap.addAttribute("doctors", allDoctors);
         modelMap.addAttribute("patients", allPatients);
-        return "createAppointment";
+        return "addAppointment";
     }
 
     @PostMapping("/create")
     public String createApp(@ModelAttribute Appointment appointment,
                             @AuthenticationPrincipal CurrentUser user,
-                            @RequestParam("date.time") @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm") Date date) {
+                            @RequestParam("dateTime") Date dateTime) {
         appointment.setUser(user.getUser());
-        appointment.setDateTime(date);
+        appointment.setDateTime(dateTime);
         appointmentRepository.save(appointment);
         return "redirect:/appointments";
     }

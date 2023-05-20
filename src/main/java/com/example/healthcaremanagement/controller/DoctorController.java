@@ -36,7 +36,7 @@ public class DoctorController {
 
     @GetMapping("/create")
     public String createDoctor() {
-        return "createDoctor";
+        return "addDoctor";
     }
 
     @PostMapping("/create")

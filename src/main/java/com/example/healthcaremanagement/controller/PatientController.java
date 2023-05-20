@@ -32,13 +32,13 @@ public class PatientController {
 
     @GetMapping("/create")
     public String createPatient() {
-        return "createPatient";
+        return "addPatient";
     }
 
     @PostMapping("/create")
     public String createPatient(@ModelAttribute Patient patient,
-                                @RequestParam("birthdayDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date birthDate) {
-        patient.setDateOfBirthday(birthDate);
+                                @RequestParam("dateOfBirthday") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateOfBirthday) {
+        patient.setDateOfBirthday(dateOfBirthday);
         patientRepository.save(patient);
         return "redirect:/patients";
     }

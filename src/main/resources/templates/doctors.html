@@ -23,7 +23,7 @@
         <td th:text="${doctor.name}"></td>
         <td th:text="${doctor.surname}"></td>
         <td th:text="${doctor.email}"></td>
-        <td th:text="${doctor.specialty}"></td>
+        <td th:text="${doctor.speciality}"></td>
         <td th:text="${doctor.phoneNumber}"></td>
         <td>
             <img th:if="${doctor.profilePic != null}" th:src="@{/getImage(imageName=${doctor.profilePic})}"

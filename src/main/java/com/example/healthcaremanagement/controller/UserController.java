@@ -16,7 +16,6 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-
     @Autowired
     private PasswordEncoder passwordEncoder;
 
