@@ -6,13 +6,15 @@ import com.example.healthcaremanagement.entity.Patient;
 import com.example.healthcaremanagement.repository.AppointmentRepository;
 import com.example.healthcaremanagement.repository.DoctorRepository;
 import com.example.healthcaremanagement.repository.PatientRepository;
+import com.example.healthcaremanagement.security.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -39,17 +41,19 @@ public class AppointmentController {
     }
 
     @GetMapping("/create")
-    public String createAppointment(ModelMap modelMap) {
+    public String createApp(ModelMap modelMap) {
         List<Patient> allPatients = patientRepository.findAll();
         List<Doctor> allDoctors = doctorRepository.findAll();
         modelMap.addAttribute("doctors", allDoctors);
         modelMap.addAttribute("patients", allPatients);
-        return "addAppointment";
+        return "createAppointment";
     }
 
     @PostMapping("/create")
-    public String createAppointment(@ModelAttribute Appointment appointment,
-                                    @RequestParam("dateTime") LocalDateTime date) {
+    public String createApp(@ModelAttribute Appointment appointment,
+                            @AuthenticationPrincipal CurrentUser user,
+                            @RequestParam("date.time") @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm") Date date) {
+        appointment.setUser(user.getUser());
         appointment.setDateTime(date);
         appointmentRepository.save(appointment);
         return "redirect:/appointments";

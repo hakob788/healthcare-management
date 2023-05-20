@@ -3,6 +3,7 @@ package com.example.healthcaremanagement.controller;
 import com.example.healthcaremanagement.entity.Patient;
 import com.example.healthcaremanagement.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -31,13 +32,13 @@ public class PatientController {
 
     @GetMapping("/create")
     public String createPatient() {
-        return "addPatient";
+        return "createPatient";
     }
 
     @PostMapping("/create")
     public String createPatient(@ModelAttribute Patient patient,
-                                @RequestParam("DateOfBirthday") Date DateOfBirthday) {
-        patient.setDateOfBirthday(DateOfBirthday);
+                                @RequestParam("birthdayDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date birthDate) {
+        patient.setDateOfBirthday(birthDate);
         patientRepository.save(patient);
         return "redirect:/patients";
     }

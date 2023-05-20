@@ -5,7 +5,6 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "doctor")
 public class Doctor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,7 +12,7 @@ public class Doctor {
     private String name;
     private String surname;
     private String email;
-    private String specialty;
+    private String speciality;
     private String phoneNumber;
     private String profilePic;
 }

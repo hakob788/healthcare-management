@@ -18,8 +18,8 @@ import java.util.List;
 public class DoctorController {
     @Autowired
     private DoctorRepository doctorRepository;
-    @Value("${healthcare-management.upload.image.path}")
-    private String imagePath;
+    @Value("${hospital.upload.image.path}")
+    private String imageUploadPath;
 
     @GetMapping
     public String doctors(ModelMap modelMap) {
@@ -36,15 +36,15 @@ public class DoctorController {
 
     @GetMapping("/create")
     public String createDoctor() {
-        return "addDoctor";
+        return "createDoctor";
     }
 
     @PostMapping("/create")
     public String createDoctor(@ModelAttribute Doctor doctor,
-                               @RequestParam("profilePic") MultipartFile multipartFile) throws IOException {
+                               @RequestParam("image") MultipartFile multipartFile) throws IOException {
         if (multipartFile != null && !multipartFile.isEmpty()) {
             String fileName = System.nanoTime() + "_" + multipartFile.getOriginalFilename();
-            File file = new File(imagePath + fileName);
+            File file = new File(imageUploadPath + fileName);
             multipartFile.transferTo(file);
             doctor.setProfilePic(fileName);
         }

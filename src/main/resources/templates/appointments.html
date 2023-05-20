@@ -5,14 +5,15 @@
     <title>Appointments</title>
 </head>
 <body>
+<h2>Appointments</h2><br>
 <a href="/">Back</a>
-<h1>Appointments</h1><br>
 <table border="5px">
     <tr>
         <th>Id</th>
         <th>Visit Time</th>
         <th>Patient name</th>
         <th>Doctor Name</th>
+        <th>User id</th>
         <th>Action</th>
     </tr>
     <tr th:each="appoint: ${appointments}">
@@ -20,6 +21,7 @@
         <td th:text="${appoint.dateTime}"></td>
         <td th:text="${appoint.patient.name}"></td>
         <td th:text="${appoint.doctor.name}"></td>
+        <td th:text="${appoint.user.id}"></td>
         <td><a th:href="@{/appointments/remove(id = ${appoint.id})}">Remove</a></td>
     </tr>
 </table>

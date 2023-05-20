@@ -3,15 +3,16 @@ package com.example.healthcaremanagement.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.Date;
-
 @Data
 @Entity
-public class Patient {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String surname;
-    private Date dateOfBirthday;
+    private String email;
+    private String password;
+    @Enumerated(value = EnumType.STRING)
+    private UserType userType;
 }
